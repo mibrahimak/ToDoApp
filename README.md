@@ -57,8 +57,9 @@ Bu projeyi yerel bilgisayarınızda test etmek veya çalıştırmak için aşağ
 1. Depoyu Klonlayın veya İndirin
 Projeyi GitHub üzerinden bilgisayarınıza indirmek için terminale aşağıdaki komutu yazın:
    ```bash
-   git clone https://github.com/mibrahimak/ToDoApp.git 
-   // (Alternatif olarak projeyi GitHub üzerinden .zip olarak indirip bir klasöre de çıkartabilirsiniz.)
+   git clone https://github.com/mibrahimak/ToDoApp.git
+    ```
+   (Alternatif olarak projeyi GitHub üzerinden .zip olarak indirip bir klasöre de çıkartabilirsiniz.)
 
 2. Proje Klasörüne Giriş Yapın
    ```bash
