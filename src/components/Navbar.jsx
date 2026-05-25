@@ -3,7 +3,7 @@ import React from 'react';
 function Navbar() {
   return (
     <nav className='glass-nav relative text-white'>
-      <div className='max-w-5xl mx-auto px-4 sm:px-6 h-[4.25rem] flex items-center justify-between'>
+      <div className='max-w-5xl mx-auto px-4 sm:px-6 h-17 flex items-center justify-between'>
         <div className='flex items-center gap-3.5'>
           <div className='logo-mark w-10 h-10 rounded-xl flex items-center justify-center text-lg'>
             <span aria-hidden='true'>✦</span>
