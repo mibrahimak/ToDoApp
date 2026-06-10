@@ -47,73 +47,80 @@ function TaskModal({ task, users, onClose }) {
         className="modal-panel w-full max-w-xl flex flex-col max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-start justify-between bg-linear-to-b from-white to-slate-50/50 rounded-t-[1.25rem]">
+        {/* Üst Alan - Tamamen Beyaz ve Keskin Köşeli */}
+        <div className="p-6 border-b border-vercel-line flex items-start justify-between bg-white rounded-t-vercel">
           <div className="pr-4 min-w-0">
+            {/* Vercel Tarzı Minimal Durum Badge'i */}
             <span
-              className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full mb-2.5 ${
-                task.completed
-                  ? 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200/60'
-                  : 'bg-indigo-100 text-indigo-800 ring-1 ring-indigo-200/60'
-              }`}
+              className={`inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 border rounded-md mb-3 bg-vercel-canvas text-vercel-text-main
+                ${task.completed ? 'border-vercel-line' : 'border-vercel-line'}`}
             >
+              <span
+                className={`w-1.5 h-1.5 rounded-full 
+                  ${task.completed ? 'bg-[#0070f3]' : 'bg-[#f5a623]'}`}
+              />
               {task.completed ? 'Tamamlandı' : 'Devam ediyor'}
             </span>
+
             <h3
               id="task-modal-title"
-              className="text-lg font-bold text-slate-900 leading-snug"
+              className="text-base font-semibold text-vercel-text-main tracking-tight leading-snug"
             >
               {task.title}
             </h3>
-            <p className="text-xs text-slate-400 mt-1.5">
+            <p className="text-xs text-vercel-text-muted mt-1.5">
               Sorumlu:{' '}
-              <span className="font-semibold text-slate-600">
+              <span className="font-medium text-vercel-text-main">
                 {taskOwner ? taskOwner.name : 'Atanmamış'}
               </span>
             </p>
           </div>
+
+          {/* İnce ve Şık Kapatma Butonu */}
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition-colors shrink-0"
+            className="text-vercel-text-muted hover:text-vercel-text-main hover:bg-vercel-canvas p-1.5 rounded-vercel transition-colors shrink-0 cursor-pointer text-sm"
             aria-label="Kapat"
           >
             ✕
           </button>
         </div>
 
-        <div className="p-5 sm:p-6 overflow-y-auto flex-1 bg-slate-50/60 modal-scroll">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+        {/* Orta Yorum Alanı */}
+        <div className="p-6 overflow-y-auto flex-1 bg-white modal-scroll">
+          <h4 className="text-[11px] font-medium text-vercel-text-muted uppercase tracking-wider mb-4">
             Görev yorumları ({comments.length})
           </h4>
 
           {isLoadingComments ? (
             <div className="flex flex-col items-center justify-center py-14 gap-3">
-              <div className="spinner-premium rounded-full h-7 w-7" />
-              <p className="text-xs text-slate-500 font-medium">
+              <div className="spinner-premium rounded-full h-6 w-6" />
+              <p className="text-xs text-vercel-text-muted">
                 Yorumlar yükleniyor...
               </p>
             </div>
           ) : commentError ? (
-            <div className="text-xs text-red-600 text-center py-6 bg-red-50 border border-red-100 rounded-xl">
+            <div className="text-xs text-vercel-danger text-center py-4 bg-vercel-danger/5 border border-vercel-danger/10 rounded-vercel">
               Yorumlar alınamadı: {commentError}
             </div>
           ) : comments.length === 0 ? (
-            <div className="text-sm text-slate-400 text-center py-10 empty-state border-0 bg-transparent">
+            <div className="text-sm text-vercel-text-muted text-center py-12 border border-dashed border-vercel-line rounded-vercel">
               Bu göreve henüz yorum yapılmamış.
             </div>
           ) : (
             <div className="space-y-3">
               {comments.map((comment) => (
                 <div key={comment.id} className="comment-bubble">
-                  <div className="flex justify-between items-center gap-2 mb-1.5">
-                    <span className="text-xs font-bold text-slate-700 truncate">
+                  <div className="flex justify-between items-center gap-4 mb-1">
+                    <span className="text-xs font-medium text-vercel-text-main truncate">
                       {comment.name}
                     </span>
-                    <span className="text-[10px] text-indigo-400/90 font-medium shrink-0">
+                    <span className="text-[10px] text-vercel-text-muted font-normal shrink-0">
                       {comment.email.toLowerCase()}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs text-vercel-text-muted leading-relaxed">
                     {comment.body}
                   </p>
                 </div>
@@ -122,11 +129,12 @@ function TaskModal({ task, users, onClose }) {
           )}
         </div>
 
-        <div className="p-4 sm:px-6 border-t border-slate-100 bg-white flex justify-end rounded-b-[1.25rem]">
+        {/* Alt Alan - Kapat Butonu Vercel Stilinde */}
+        <div className="p-4 px-6 border-t border-vercel-line bg-vercel-canvas flex justify-end rounded-b-vercel">
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition-colors"
+            className="px-4 py-1.5 bg-white hover:bg-vercel-canvas text-vercel-text-main font-medium text-xs border border-vercel-line rounded-vercel transition-colors cursor-pointer"
           >
             Kapat
           </button>

@@ -4,9 +4,9 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <div className='app-shell flex flex-col min-h-screen'>
+    <div className="app-shell">
       <Navbar />
-      <main className='flex-1 pb-16'>
+      <main className="flex-1 pb-16">
         <Dashboard />
       </main>
     </div>

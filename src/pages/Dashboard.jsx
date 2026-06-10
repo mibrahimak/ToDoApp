@@ -29,9 +29,9 @@ function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-112 gap-4">
-        <div className="spinner-premium rounded-full h-12 w-12" />
-        <p className="text-slate-600 font-semibold text-sm tracking-wide">
+      <div className="flex flex-col items-center justify-center min-h-112 gap-3">
+        <div className="spinner-premium rounded-full h-8 w-8" />
+        <p className="text-vercel-text-muted text-xs tracking-tight">
           Takım verileri yükleniyor...
         </p>
       </div>
@@ -40,59 +40,78 @@ function Dashboard() {
 
   if (error) {
     return (
-      <div className="max-w-md mx-auto mt-12 p-6 bg-red-50/90 border border-red-200/80 text-red-800 rounded-2xl text-center premium-card">
-        <p className="font-bold text-base">Bir hata oluştu</p>
-        <p className="text-sm mt-2 text-red-600/90">{error}</p>
+      <div className="max-w-md mx-auto mt-12 p-5 bg-white border border-red-200 text-[#ee0000] rounded-vercel text-center">
+        <p className="font-semibold text-sm">Bir hata oluştu</p>
+        <p className="text-xs mt-1 opacity-80">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-      <header className="section-header">
-        <h2 className="section-title">Takım Görev Panosu</h2>
-        <p className="text-sm text-slate-500 mt-2 max-w-xl leading-relaxed">
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      {/* Başlık Alanı */}
+      <header className="section-header border-b border-vercel-line pb-6">
+        <h2 className="section-title tracking-tight">Takım Görev Panosu</h2>
+        <p className="text-sm text-vercel-text-muted mt-1.5 max-w-xl leading-relaxed">
           Takımınızın görevlerini filtreleyin, durumlarını güncelleyin ve eş
           zamanlı takip edin.
         </p>
-        <div className="flex flex-wrap gap-3 mt-5">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+
+        {/* Vercel Tarzı Monokrom İstatistik Badge'leri */}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {/* Toplam Görev Sayısı (Yeşil Noktalı) */}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-main border border-vercel-line">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />{' '}
+            {/* Tam Vercel Yeşili */}
             {tasks.length} görev
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-100">
+
+          {/* Devam Eden Görevler (Turuncu Noktalı) */}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-muted border border-vercel-line">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f5a623]" />
             {pendingCount} devam ediyor
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-100">
+
+          {/* Tamamlanan Görevler (Mavi Noktalı) */}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-muted border border-vercel-line">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
             {completedCount} tamamlandı
           </span>
         </div>
       </header>
 
-      <CreateTaskForm
-        users={users}
-        onAddTask={addTask}
-        isSubmitting={isSubmitting}
-      />
+      {/* Görev Ekleme Formu */}
+      <div className="mb-8 mt-8">
+        <CreateTaskForm
+          users={users}
+          onAddTask={addTask}
+          isSubmitting={isSubmitting}
+        />
+      </div>
 
-      <FilterBar
-        users={users}
-        selectedUser={selectedUser}
-        setSelectedUser={setSelectedUser}
-        selectedStatus={selectedStatus}
-        setSelectedStatus={setSelectedStatus}
-        onResetStorage={resetStorage}
-      />
+      {/* Filtreleme Çubuğu */}
+      <div className="mb-8">
+        <FilterBar
+          users={users}
+          selectedUser={selectedUser}
+          setSelectedUser={setSelectedUser}
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
+          onResetStorage={resetStorage}
+        />
+      </div>
 
-      <div className="flex justify-between items-center mb-3 px-1">
-        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.12em]">
+      {/* Liste Başlığı Metni */}
+      <div className="flex justify-between items-center mb-4 px-1">
+        <span className="text-[11px] font-medium text-vercel-text-muted uppercase tracking-wider">
           Görev Listesi
         </span>
-        <span className="text-xs font-semibold text-indigo-600/80 tabular-nums">
-          {tasks.length} kayıt
+        <span className="text-xs text-vercel-text-muted tabular-nums">
+          {tasks.length} kayıt listelendi
         </span>
       </div>
 
+      {/* Görev Listesi */}
       <TaskList
         tasks={tasks}
         users={users}

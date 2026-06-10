@@ -6,50 +6,57 @@ function TaskCard({ task, users, onToggleStatus, onSelectTask, onDeleteTask }) {
   return (
     <div
       onClick={() => onSelectTask(task)}
-      className={`task-card premium-card flex items-center justify-between p-4 sm:p-5 mb-3 ${
-        task.completed ? 'task-card--completed' : 'bg-white/80'
-      }`}
+      className={`task-card premium-card flex items-center justify-between p-4 transition-all cursor-pointer
+        ${task.completed ? 'task-card--completed' : 'bg-white'}`}
     >
+      {/* Sol Taraf: Görev Bilgileri */}
       <div className="flex-1 pr-4 min-w-0">
         <h4
-          className={`text-base font-semibold mb-2.5 transition-all truncate ${
-            task.completed ? 'line-through text-slate-400' : 'text-slate-800'
-          }`}
+          className={`text-sm font-medium mb-2 transition-colors truncate tracking-tight
+            ${task.completed ? 'line-through text-vercel-text-muted opacity-60' : 'text-vercel-text-main'}`}
         >
           {task.title}
         </h4>
+
+        {/* Vercel Tarzı Atanmış Kişi Badge'i */}
         <span className="badge-assignee">
-          <span aria-hidden="true">👤</span>
+          <span aria-hidden="true" className="text-[10px] opacity-70">
+            👤
+          </span>
           {taskOwner ? taskOwner.name : 'Atanmamış'}
         </span>
       </div>
 
+      {/* Sağ Taraf: Eylem Butonları */}
       <div className="flex items-center gap-2 shrink-0">
+        {/* Durum Değiştirme Butonu (Monokrom ve Sade) */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             onToggleStatus(task.id);
           }}
-          className={`px-3.5 py-2 text-xs sm:text-sm font-bold text-white rounded-xl shadow-sm transition-all duration-200 ${
-            task.completed
-              ? 'bg-linear-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-emerald-200/50'
-              : 'bg-linear-to-br from-slate-600 to-slate-800 hover:from-slate-700 hover:to-slate-900'
-          }`}
+          className={`px-3 py-1.5 text-xs font-medium border rounded-vercel transition-colors cursor-pointer
+            ${
+              task.completed
+                ? 'bg-vercel-canvas border-vercel-line text-vercel-text-muted hover:bg-vercel-line'
+                : 'bg-vercel-text-main border-vercel-text-main text-white hover:bg-white hover:text-vercel-text-main'
+            }`}
         >
           {task.completed ? 'Tamamlandı' : 'Devam ediyor'}
         </button>
 
+        {/* Minimal Vercel Tarzı Silme Butonu */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             onDeleteTask(task.id);
           }}
-          className="p-2.5 text-sm bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl border border-rose-200/80 transition-all hover:shadow-sm"
+          className="p-1.5 text-xs text-vercel-text-muted hover:text-vercel-danger hover:bg-vercel-danger/5 border border-transparent hover:border-vercel-danger/20 rounded-vercel transition-all cursor-pointer"
           title="Görevi Sil"
         >
-          <span aria-hidden="true">🗑</span>
+          <span aria-hidden="true">Sil</span>
         </button>
       </div>
     </div>

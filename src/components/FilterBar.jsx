@@ -8,23 +8,24 @@ function FilterBar({
   setSelectedStatus,
   onResetStorage,
 }) {
-  const hasActiveFilters =
-    selectedUser !== 'all' || selectedStatus !== 'all';
+  const hasActiveFilters = selectedUser !== 'all' || selectedStatus !== 'all';
 
   return (
-    <div className='space-y-3 mb-6'>
-      <div className='filter-panel p-4 sm:p-5 flex flex-col sm:flex-row gap-4 items-center justify-between'>
-        <div className='flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-stretch sm:items-center'>
-          <div className='w-full sm:w-64'>
-            <label className='block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5'>
+    <div className="space-y-4 mb-8">
+      {/* Filtre Paneli - Gölgeler kalktı, jilet gibi keskin Vercel çizgisi geldi */}
+      <div className="filter-panel p-5 flex flex-col sm:flex-row gap-5 items-end justify-between bg-white border border-vercel-line rounded-vercel">
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-stretch sm:items-center">
+          {/* Görev Sahibi Seçim Alanı */}
+          <div className="w-full sm:w-60">
+            <label className="block text-[10px] font-medium text-vercel-text-muted uppercase tracking-wider mb-1.5">
               Görev Sahibi
             </label>
             <select
               value={selectedUser}
               onChange={(e) => setSelectedUser(e.target.value)}
-              className='input-premium shadow-sm'
+              className="input-premium cursor-pointer"
             >
-              <option value='all'>Tüm Takım Üyeleri</option>
+              <option value="all">Tüm Takım Üyeleri</option>
               {users.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.name}
@@ -33,43 +34,46 @@ function FilterBar({
             </select>
           </div>
 
-          <div className='w-full sm:w-48'>
-            <label className='block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5'>
+          {/* Durum Seçim Alanı */}
+          <div className="w-full sm:w-44">
+            <label className="block text-[10px] font-medium text-vercel-text-muted uppercase tracking-wider mb-1.5">
               Durum
             </label>
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className='input-premium shadow-sm'
+              className="input-premium cursor-pointer"
             >
-              <option value='all'>Tüm Durumlar</option>
-              <option value='completed'>Tamamlananlar</option>
-              <option value='pending'>Devam Edenler</option>
+              <option value="all">Tüm Durumlar</option>
+              <option value="completed">Tamamlananlar</option>
+              <option value="pending">Devam Edenler</option>
             </select>
           </div>
         </div>
 
+        {/* Vercel Tarzı Minimal Filtre Temizleme Butonu */}
         {hasActiveFilters && (
           <button
-            type='button'
+            type="button"
             onClick={() => {
               setSelectedUser('all');
               setSelectedStatus('all');
             }}
-            className='text-xs font-bold text-rose-500 hover:text-rose-600 transition-colors px-3 py-2 rounded-lg hover:bg-rose-50 shrink-0'
+            className="text-xs font-medium text-vercel-text-main hover:bg-vercel-canvas border border-vercel-line px-3 py-1.5 rounded-vercel transition-colors shrink-0 cursor-pointer w-full sm:w-auto text-center"
           >
-            Filtreleri temizle
+            Filtreleri Temizle
           </button>
         )}
       </div>
 
-      <div className='flex justify-end px-1'>
+      {/* Sistem Verilerini Sıfırlama Butonu - Alt satırdaki o şık Vercel butonu */}
+      <div className="flex justify-end px-1">
         <button
-          type='button'
+          type="button"
           onClick={onResetStorage}
-          className='text-xs font-medium text-slate-400 hover:text-slate-600 bg-white/60 hover:bg-white border border-slate-200/80 px-3 py-1.5 rounded-lg transition-all shadow-sm hover:shadow'
+          className="px-3 py-1.5 text-xs font-medium text-vercel-text-muted hover:text-vercel-danger hover:bg-vercel-danger/5 rounded-vercel transition-all cursor-pointer border border-transparent hover:border-vercel-danger/20"
         >
-          Sistem verilerini sıfırla
+          Sistem Verilerini Sıfırla
         </button>
       </div>
     </div>

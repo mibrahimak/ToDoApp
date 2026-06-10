@@ -1,34 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Navbar() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('vercel_theme') || 'light';
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('vercel_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   return (
-    <nav className='glass-nav relative text-white'>
-      <div className='max-w-5xl mx-auto px-4 sm:px-6 h-17 flex items-center justify-between'>
-        <div className='flex items-center gap-3.5'>
-          <div className='logo-mark w-10 h-10 rounded-xl flex items-center justify-center text-lg'>
-            <span aria-hidden='true'>✦</span>
+    <nav className="glass-nav sticky top-0 z-40 bg-white border-b border-vercel-line transition-colors duration-200">
+      <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Sol Taraf: Logo ve Başlık */}
+        <div className="flex items-center gap-2.5">
+          <div className="logo-mark w-7 h-7 rounded-vercel flex items-center justify-center text-xs font-bold bg-vercel-text-main text-white">
+            M
           </div>
-          <div>
-            <span className='font-bold text-[0.95rem] tracking-tight block leading-tight'>
-              Takım Görev Uygulaması
-            </span>
-            <span className='text-[10px] text-indigo-200/70 font-medium block mt-0.5 tracking-wide uppercase'>
-              Görev Yönetim Sistemi
+          <div className="flex items-center gap-1.5">
+            <span className="font-medium text-xs text-vercel-text-main tracking-tight">
+              Takım Görev Panosu
             </span>
           </div>
         </div>
 
-        <div className='flex items-center gap-4'>
-          <div className='text-right hidden sm:block'>
-            <span className='text-xs font-semibold text-white/90 block'>
-              Geliştirici Paneli
+        {/* Sağ Taraf: Eylemler */}
+        <div className="flex items-center gap-4">
+          {/* image_2.png Görselindeki Premium Animasyonlu Tema Toggle'ı */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={`relative w-11 h-6 rounded-full border transition-colors duration-300 p-0.5 cursor-pointer flex items-center
+              ${
+                theme === 'dark'
+                  ? 'bg-vercel-text-main border-vercel-line justify-end'
+                  : 'bg-vercel-canvas border-vercel-line justify-start'
+              }`}
+            title={theme === 'light' ? 'Koyu Moda Geç' : 'Açık Moda Geç'}
+          >
+            {/* İçerideki Yuvarlak Kapsül (İkon Taşıyıcı) */}
+            <div className="w-4.5 h-4.5 rounded-full bg-white dark:bg-vercel-bg shadow-sm flex items-center justify-center text-[10px] transition-all duration-300 transform select-none">
+              {theme === 'light' ? '☀️' : '🌙'}
+            </div>
+          </button>
+
+          {/* Profil Avatarı */}
+          <div className="flex items-center gap-4">
+            <span className="text-[11px] font-medium bg-vercel-canvas text-vercel-text-muted border border-vercel-line px-2 py-1 rounded-full tracking-wider uppercase">
+              Software Persona
             </span>
-            <span className='text-[10px] text-emerald-300 font-bold block online-pulse'>
-              ● Çevrimiçi
-            </span>
-          </div>
-          <div className='w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-bold text-sm text-white/95 backdrop-blur-sm ring-2 ring-indigo-400/30'>
-            DEV
           </div>
         </div>
       </div>
