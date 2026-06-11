@@ -12,10 +12,8 @@ function FilterBar({
 
   return (
     <div className="space-y-4 mb-8">
-      {/* Filtre Paneli - Gölgeler kalktı, jilet gibi keskin Vercel çizgisi geldi */}
       <div className="filter-panel p-5 flex flex-col sm:flex-row gap-5 items-end justify-between bg-white border border-vercel-line rounded-vercel">
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-stretch sm:items-center">
-          {/* Görev Sahibi Seçim Alanı */}
           <div className="w-full sm:w-60">
             <label className="block text-[10px] font-medium text-vercel-text-muted uppercase tracking-wider mb-1.5">
               Görev Sahibi
@@ -34,7 +32,6 @@ function FilterBar({
             </select>
           </div>
 
-          {/* Durum Seçim Alanı */}
           <div className="w-full sm:w-44">
             <label className="block text-[10px] font-medium text-vercel-text-muted uppercase tracking-wider mb-1.5">
               Durum
@@ -51,7 +48,6 @@ function FilterBar({
           </div>
         </div>
 
-        {/* Vercel Tarzı Minimal Filtre Temizleme Butonu */}
         {hasActiveFilters && (
           <button
             type="button"
@@ -66,7 +62,6 @@ function FilterBar({
         )}
       </div>
 
-      {/* Sistem Verilerini Sıfırlama Butonu - Alt satırdaki o şık Vercel butonu */}
       <div className="flex justify-end px-1">
         <button
           type="button"

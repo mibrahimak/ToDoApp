@@ -9,7 +9,6 @@ function TaskCard({ task, users, onToggleStatus, onSelectTask, onDeleteTask }) {
       className={`task-card premium-card flex items-center justify-between p-4 transition-all cursor-pointer
         ${task.completed ? 'task-card--completed' : 'bg-white'}`}
     >
-      {/* Sol Taraf: Görev Bilgileri */}
       <div className="flex-1 pr-4 min-w-0">
         <h4
           className={`text-sm font-medium mb-2 transition-colors truncate tracking-tight
@@ -18,7 +17,6 @@ function TaskCard({ task, users, onToggleStatus, onSelectTask, onDeleteTask }) {
           {task.title}
         </h4>
 
-        {/* Vercel Tarzı Atanmış Kişi Badge'i */}
         <span className="badge-assignee">
           <span aria-hidden="true" className="text-[10px] opacity-70">
             👤
@@ -27,9 +25,7 @@ function TaskCard({ task, users, onToggleStatus, onSelectTask, onDeleteTask }) {
         </span>
       </div>
 
-      {/* Sağ Taraf: Eylem Butonları */}
       <div className="flex items-center gap-2 shrink-0">
-        {/* Durum Değiştirme Butonu (Monokrom ve Sade) */}
         <button
           type="button"
           onClick={(e) => {
@@ -46,7 +42,6 @@ function TaskCard({ task, users, onToggleStatus, onSelectTask, onDeleteTask }) {
           {task.completed ? 'Tamamlandı' : 'Devam ediyor'}
         </button>
 
-        {/* Minimal Vercel Tarzı Silme Butonu */}
         <button
           type="button"
           onClick={(e) => {

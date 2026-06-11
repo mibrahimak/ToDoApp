@@ -47,10 +47,8 @@ function TaskModal({ task, users, onClose }) {
         className="modal-panel w-full max-w-xl flex flex-col max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Üst Alan - Tamamen Beyaz ve Keskin Köşeli */}
         <div className="p-6 border-b border-vercel-line flex items-start justify-between bg-white rounded-t-vercel">
           <div className="pr-4 min-w-0">
-            {/* Vercel Tarzı Minimal Durum Badge'i */}
             <span
               className={`inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 border rounded-md mb-3 bg-vercel-canvas text-vercel-text-main
                 ${task.completed ? 'border-vercel-line' : 'border-vercel-line'}`}
@@ -76,7 +74,6 @@ function TaskModal({ task, users, onClose }) {
             </p>
           </div>
 
-          {/* İnce ve Şık Kapatma Butonu */}
           <button
             type="button"
             onClick={onClose}
@@ -87,7 +84,6 @@ function TaskModal({ task, users, onClose }) {
           </button>
         </div>
 
-        {/* Orta Yorum Alanı */}
         <div className="p-6 overflow-y-auto flex-1 bg-white modal-scroll">
           <h4 className="text-[11px] font-medium text-vercel-text-muted uppercase tracking-wider mb-4">
             Görev yorumları ({comments.length})
@@ -129,7 +125,6 @@ function TaskModal({ task, users, onClose }) {
           )}
         </div>
 
-        {/* Alt Alan - Kapat Butonu Vercel Stilinde */}
         <div className="p-4 px-6 border-t border-vercel-line bg-vercel-canvas flex justify-end rounded-b-vercel">
           <button
             type="button"

@@ -11,23 +11,19 @@ export const useTasks = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Verileri Yükleme (Local Storage Kontrollü)
   useEffect(() => {
     const loadInitialData = async () => {
       try {
         setIsLoading(true);
         setError(null);
 
-        // Önce local storage'da kayıtlı görev var mı bak
         const localTasks = localStorage.getItem('persona_tasks');
         const localUsers = localStorage.getItem('persona_users');
 
         if (localTasks && localUsers) {
-          // Varsa doğrudan hafızadan oku (API'ye gitme)
           setTasks(JSON.parse(localTasks));
           setUsers(JSON.parse(localUsers));
         } else {
-          // Yoksa API'den çek ve hafızaya kaydet
           const [tasksData, usersData] = await Promise.all([
             api.getTasks(),
             api.getUsers(),
@@ -47,23 +43,20 @@ export const useTasks = () => {
     loadInitialData();
   }, []);
 
-  // State her değiştiğinde Local Storage'ı güncelle (useEffect takibi)
   useEffect(() => {
     if (tasks.length > 0) {
       localStorage.setItem('persona_tasks', JSON.stringify(tasks));
     }
   }, [tasks]);
 
-  // Durum Değiştirme
   const toggleTaskStatus = (taskId) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
-      )
+        task.id === taskId ? { ...task, completed: !task.completed } : task,
+      ),
     );
   };
 
-  // Görev Ekleme
   const addTask = async (title, userId) => {
     try {
       setIsSubmitting(true);
@@ -77,21 +70,18 @@ export const useTasks = () => {
     }
   };
 
-  // Görev Silme Fonksiyonu
   const deleteTask = async (taskId) => {
     const confirmDelete = window.confirm(
-      'Bu görevi silmek istediğinize emin misiniz?'
+      'Bu görevi silmek istediğinize emin misiniz?',
     );
     if (!confirmDelete) return;
 
     try {
-      // API'ye silme isteği gönder
       await api.deleteTask(taskId);
-      // Yerel state'den bu görevi filtreleyerek kaldır
+
       const updatedTasks = tasks.filter((task) => task.id !== taskId);
       setTasks(updatedTasks);
 
-      // Eğer hiç görev kalmadıysa hafızayı temizle (boş dizi olarak kalmasın)
       if (updatedTasks.length === 0) {
         localStorage.removeItem('persona_tasks');
       }
@@ -100,16 +90,15 @@ export const useTasks = () => {
     }
   };
 
-  // Hafızayı Sıfırlama Fonksiyonu
   const resetStorage = () => {
     const confirmReset = window.confirm(
-      'Tüm yerel veriler silinecek ve orijinal API verileri yüklenecek. Emin misiniz?'
+      'Tüm yerel veriler silinecek ve orijinal API verileri yüklenecek. Emin misiniz?',
     );
     if (!confirmReset) return;
 
     localStorage.removeItem('persona_tasks');
     localStorage.removeItem('persona_users');
-    // Sayfayı yenileyerek useEffect'in verileri API'den sıfırdan çekmesini sağlıyoruz
+
     window.location.reload();
   };
 

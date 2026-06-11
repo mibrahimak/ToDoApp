@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 
-/* ─── Vercel Design Tokens (Geist) ─── */
 :root {
   --font-sans: Geist, system-ui, sans-serif;
 
@@ -30,10 +29,9 @@
   --color-vercel-danger: #ff3333;
 }
 
-/* ─── Base ─── */
 html {
   scroll-behavior: smooth;
-  /* Tema geçişlerinin yumuşak olması için sihirli dokunuş */
+
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
@@ -47,7 +45,6 @@ body {
   color: var(--color-vercel-text-main);
 }
 
-/* ─── App shell ─── */
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -55,19 +52,17 @@ body {
   background-color: var(--color-vercel-canvas);
 }
 
-/* ─── Navbar ─── */
 .glass-nav {
   background-color: var(--color-vercel-bg);
   border-bottom: 1px solid var(--color-vercel-line);
   height: 64px;
 }
 
-/* ─── Vercel Panel / Cards ─── */
 .premium-card {
   background-color: var(--color-vercel-bg);
   border: 1px solid var(--color-vercel-line);
   border-radius: var(--radius-vercel);
-  box-shadow: none; /* Vercel gölge kullanmaz, çizgi kullanır */
+  box-shadow: none;
   transition: border-color 0.15s ease;
 }
 
@@ -81,19 +76,17 @@ body {
   border-radius: var(--radius-vercel);
 }
 
-/* ─── Section header ─── */
 .section-header {
   margin-bottom: 2rem;
 }
 
 .section-title {
-  font-size: 1.5rem; /* 24px Vercel için daha ideal */
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--color-vercel-text-main);
 }
 
-/* ─── Form inputs ─── */
 .input-premium {
   width: 100%;
   background-color: var(--color-vercel-bg);
@@ -112,7 +105,7 @@ body {
 .input-premium:focus {
   outline: none;
   border-color: var(--color-vercel-text-main);
-  box-shadow: none; /* Parlayan gölgeler kalktı */
+  box-shadow: none;
 }
 
 .input-premium:disabled {
@@ -121,7 +114,6 @@ body {
   background-color: var(--color-vercel-canvas);
 }
 
-/* ─── Primary button ─── */
 .btn-primary {
   background-color: var(--color-vercel-text-main);
   color: var(--color-vercel-bg);
@@ -148,7 +140,6 @@ body {
   cursor: not-allowed;
 }
 
-/* ─── Task card ─── */
 .task-card {
   position: relative;
   cursor: pointer;
@@ -169,7 +160,6 @@ body {
   border-color: var(--color-vercel-line);
 }
 
-/* ─── Status badge ─── */
 .badge-assignee {
   display: inline-flex;
   align-items: center;
@@ -183,16 +173,14 @@ body {
   border-radius: var(--radius-vercel);
 }
 
-/* ─── Filter panel ─── */
 .filter-panel {
   background-color: var(--color-vercel-bg);
   border: 1px solid var(--color-vercel-line);
   border-radius: var(--radius-vercel);
 }
 
-/* ─── Modal ─── */
 .modal-overlay {
-  background: rgba(0, 0, 0, 0.4); /* Pure black overlay */
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   animation: fadeIn 0.15s ease-out forwards;
 }
@@ -201,11 +189,10 @@ body {
   background-color: var(--color-vercel-bg);
   border: 1px solid var(--color-vercel-line);
   border-radius: var(--radius-vercel);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12); /* Vercel stili modal gölgesi */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
   animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ─── Comment bubble ─── */
 .comment-bubble {
   background-color: var(--color-vercel-canvas);
   border: 1px solid var(--color-vercel-line);
@@ -213,21 +200,18 @@ body {
   padding: 0.75rem 1rem;
 }
 
-/* ─── Empty state ─── */
 .empty-state {
   background-color: var(--color-vercel-bg);
   border: 1px dashed var(--color-vercel-line);
   border-radius: var(--radius-vercel);
 }
 
-/* ─── Loading spinner ─── */
 .spinner-premium {
   border: 2px solid var(--color-vercel-line);
   border-top-color: var(--color-vercel-text-main);
   animation: spin 0.6s linear infinite;
 }
 
-/* ─── Logo mark ─── */
 .logo-mark {
   background-color: var(--color-vercel-text-main);
   color: var(--color-vercel-bg);

@@ -49,7 +49,6 @@ function Dashboard() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
-      {/* Başlık Alanı */}
       <header className="section-header border-b border-vercel-line pb-6">
         <h2 className="section-title tracking-tight">Takım Görev Panosu</h2>
         <p className="text-sm text-vercel-text-muted mt-1.5 max-w-xl leading-relaxed">
@@ -57,22 +56,17 @@ function Dashboard() {
           zamanlı takip edin.
         </p>
 
-        {/* Vercel Tarzı Monokrom İstatistik Badge'leri */}
         <div className="flex flex-wrap gap-2 mt-4">
-          {/* Toplam Görev Sayısı (Yeşil Noktalı) */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-main border border-vercel-line">
             <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />{' '}
-            {/* Tam Vercel Yeşili */}
             {tasks.length} görev
           </span>
 
-          {/* Devam Eden Görevler (Turuncu Noktalı) */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-muted border border-vercel-line">
             <span className="w-1.5 h-1.5 rounded-full bg-[#f5a623]" />
             {pendingCount} devam ediyor
           </span>
 
-          {/* Tamamlanan Görevler (Mavi Noktalı) */}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-vercel-bg text-vercel-text-muted border border-vercel-line">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
             {completedCount} tamamlandı
@@ -80,7 +74,6 @@ function Dashboard() {
         </div>
       </header>
 
-      {/* Görev Ekleme Formu */}
       <div className="mb-8 mt-8">
         <CreateTaskForm
           users={users}
@@ -89,7 +82,6 @@ function Dashboard() {
         />
       </div>
 
-      {/* Filtreleme Çubuğu */}
       <div className="mb-8">
         <FilterBar
           users={users}
@@ -101,7 +93,6 @@ function Dashboard() {
         />
       </div>
 
-      {/* Liste Başlığı Metni */}
       <div className="flex justify-between items-center mb-4 px-1">
         <span className="text-[11px] font-medium text-vercel-text-muted uppercase tracking-wider">
           Görev Listesi
@@ -111,7 +102,6 @@ function Dashboard() {
         </span>
       </div>
 
-      {/* Görev Listesi */}
       <TaskList
         tasks={tasks}
         users={users}
